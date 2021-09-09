@@ -1,0 +1,26 @@
+SELECT Player, Team, Pos, Pct_Owned,ADP
+FROM [NFL Fantasy].[dbo].[WRstats]
+where Pos ='WR - R'
+
+select Player, Team,Fantasy_Points, Fantasy_Points_Per_Game, ADP
+FROM [NFL Fantasy].[dbo].[WRstats]
+where ADP is not null and Fantasy_Points_Per_Game != 0
+order by Fantasy_Points_Per_Game desc
+
+select top (20) player, team, Rec
+FROM [NFL Fantasy].[dbo].[WRstats]
+order by rec desc
+
+select top (20) player, team, Rec_TD
+FROM [NFL Fantasy].[dbo].[WRstats]
+order by rec_TD desc
+
+select player, team,Round((REC/games),2) as Rec_Per_Game, Round((REC_Yds/Games),2) as Recieving_Yds_per_Game, ADP
+FROM [NFL Fantasy].[dbo].[WRstats]
+where games != 0 and rec_yds != 0 and rec != 0 and ADP is not null
+order by Recieving_Yds_per_Game desc
+
+select top (50) player, team, Rec_Yds, [Y/R], LG
+FROM [NFL Fantasy].[dbo].[WRstats]
+where rec_yds !=0
+order by Rec_Yds desc
